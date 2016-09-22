@@ -1,0 +1,65 @@
+
+Environments:
+    Defaults :
+        RestInvokers :
+            ServiceTargets :
+                - ServiceTarget :
+                     id 	: "FindOrderByIdTarget"
+                     http_method : GET
+                     reply_schema_uri: sample.xsd
+                     url: 'orders/find-order-by-id'
+                     connection_timeout : 10
+                     read_timeout : 5
+
+                - ServiceTarget :
+                    id 	: "CreateOrderTarget"
+                    http_method : POST
+                    request_schema_uri : sample-request.xsd
+                    reply_schema_uri: sample-response.xsd
+                    url: '/orders/create-order'
+                    connection_timeout : 10
+                    read_timeout : 5
+
+        DataSourceConfiguration :
+            id : "OrdersDataSource"
+            driver_class_name : "oracle.jdbc.OracleDriver"
+            pool_confiuration :
+                DBCP_POOL :
+                    initialsize : 10
+                    maxTotal : 20
+                    maxIdle : 5
+                    minIdle : 5
+                    maxWaitTime : 2000 
+                    defaultQueryTimeout : 2000
+ 
+        DaoConfigurations :
+            OrdersDaoConfiguration :
+                datasource : "OrdersDataSource"
+                methods :
+                    - method :
+                        signature : Order findOrderById(int orderId)
+                        query : "select * from order where order_id=$orderId"
+                    - method :
+                        signature : int createOrder(Order order)
+                        query : 'insert into orders (id:autogenerate, name, numItems, price, currency) VALUES ("myOrder", 10, 50, "dollars");'
+
+    Develeopment:
+        DataSourceConfiguration :
+            id : "OrdersDataSource"
+            url : "jdbc:oracle:thin@dev123"
+            userName : dev
+            password : dev
+    
+    Test:
+        DataSourceConfiguration :
+            id : "OrdersDataSource"
+            url : "jdbc:oracle:thin@test123"
+            userName : test
+            password : test
+    
+    Production:
+        DataSourceConfiguration :
+            id : "OrdersDataSource"
+            url : "jdbc:oracle:thin@prod123"
+            userName : prod
+            password : prod

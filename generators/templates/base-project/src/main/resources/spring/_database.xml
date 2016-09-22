@@ -1,0 +1,52 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+     http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd
+     http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="url" value="${url}" />
+		<property name="driverClassName" value="${driverName}" />
+		<property name="username" value="${userName}" />
+		<property name="password" value="${password}" />
+
+		<property name="defaultAutoCommit" value="true" />
+		<property name="defaultReadOnly" value="false" />
+		<property name="poolPreparedStatements" value="true" />
+
+		<property name="initialSize" value="${initialSize}" />
+		<property name="maxWait" value="${maxWaitTime}" />
+		<property name="maxIdle" value="${maxIdle}" />
+		<property name="minIdle" value="${minIdle}" />
+
+
+		<property name="testOnBorrow" value="true" />
+		<property name="testOnReturn" value="false" />
+
+		<property name="validationQuery" value="SELECT count(*) from DUAL" />
+	</bean>
+
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+		<!-- <property name="fetchSize" value="${jdbc.fetchSize}" /> -->
+		<property name="queryTimeout" value="${defaultTimeout}" />
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+</beans>

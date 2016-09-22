@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- PLACEHOLDER For Logback configuration -->
+<configuration>
+	<contextName>codeathon</contextName>
+
+	<jmxConfigurator />
+
+   	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${jbs.logdir}/apps/${CONTEXT_NAME}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${jbs.logdir}/apps/${CONTEXT_NAME}.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<MaxHistory>7</MaxHistory>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+            <timeBasedFileNamingAndTriggeringPolicy
+             class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>5MB</maxFileSize>
+				<MaxHistory>3</MaxHistory>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+        	<!--  DO NOT USER  %file and %line in production logback configuration, performance hit.  -->
+      		<pattern>%date{dd-MMM-yyyy[HH:mm:ss.SSS]}::%logger::%level::[%thread] %X{req.remoteHost} %X{req.requestURI} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+    </appender>
+
+    <logger name="net.sf.ehcache" additivity="false" level="info">
+        <appender-ref ref="thirdPartyFile"/>
+    </logger>
+
+    <logger name="org.apache" additivity="false" level="info">
+        <appender-ref ref="thirdPartyFile"/>
+    </logger>
+
+    <logger name="org.springframework" additivity="false" level="info">
+        <appender-ref ref="thirdPartyFile"/>
+    </logger>
+
+    <logger name="org.hibernate" additivity="false" level="info">
+        <appender-ref ref="thirdPartyFile"/>
+    </logger>
+
+    <logger name="com.uprr.app.sw" additivity="false" level="info">
+        <appender-ref ref="file"/>
+    </logger>
+
+    <logger name="com.uprr" additivity="false" level="info">
+        <appender-ref ref="file"/>
+    </logger>
+    
+    <logger name="com.uprr.app.tos.vmu.controller.LogController" additivity="false" level="info">
+    	<appender-ref ref="vmuClientLog" />
+    </logger>
+
+	<root>
+		<level value="info"/>
+		<appender-ref ref="console"/>
+		<appender-ref ref="file"/>
+	</root>
+</configuration>

@@ -1,0 +1,7 @@
+driverName = <%=  driverName %>
+initialSize = <%= initialsize %>
+maxTotal = <%= maxTotal %>
+maxIdle = <%= maxIdle %>
+minIdle = <%= minIdle %>
+maxWaitTime = <%= maxWaitTime %> 
+defaultTimeout = <%= defaultTimeout %>
