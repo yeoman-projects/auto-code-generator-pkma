@@ -23,8 +23,9 @@ module.exports = yeoman.Base
 
 				this.configYMLObject = yamljs.load('config.yml');
 
-				this.packageName = 'com.prokarma.jhipster.codeathon';
-				this.projectName = 'CodeAThonDemo';
+				this.packageName = this.configYMLObject.packageName;
+				this.projectName = this.configYMLObject.projectName;
+				this.tla = this.configYMLObject.projectTLA;
 
 				/**
 				 * Entity creation from the generated po.js file
@@ -186,6 +187,8 @@ module.exports = yeoman.Base
 
 					restEndPointDetails.restEndPointUrl = serviceTargetDetails.url;
 
+					restEndPointDetails.externalRestEndPointUrl = serviceTargetDetails.externalURL;
+
 					if (serviceTargetDetails.request_schema_uri) {
 						var parser = new xmls2js.Parser();
 						parser
@@ -228,7 +231,7 @@ module.exports = yeoman.Base
 					var resourcesPath = 'src/main/resources/';
 					var javaPath = 'src/main/java/';
 					var testPath = 'src/main/test/';
-					var packageStruct = 'com/prokarma/jhipster/codeathon/';
+					var packageStruct = 'com/pkrm/usm/dashboard/server/';
 					var webappPath = 'src/main/webapp/';
 
 					var underscoreParams = {
@@ -349,7 +352,8 @@ module.exports = yeoman.Base
 							+ 'package/controller/BaseController.java',
 							javaPath + packageStruct
 									+ 'controller/BaseController.java', {
-								packageName : this.packageName
+								packageName : this.packageName,
+								tla: this.tla
 							});
 
 					this.template(basePath + javaPath

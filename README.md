@@ -12,6 +12,9 @@ As this is a [JHipster](http://jhipster.github.io/) module, we expect you have J
 
 - [Installing JHipster](https://jhipster.github.io/installation.html)
 
+# JSONIX command
+java -jar jsonix-schema-compiler-full-2.3.9.jar -p PO *.xsd
+
 # Installation
 
 To install this module:

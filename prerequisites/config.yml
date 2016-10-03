@@ -1,4 +1,6 @@
-
+projectName: "MyProject"
+projectTLA: "tos"
+packageName: "com.pkrm.usm.dashboard.server"
 Environments:
     Defaults :
         RestInvokers :
@@ -17,6 +19,7 @@ Environments:
                     request_schema_uri : sample-request.xsd
                     reply_schema_uri: sample-response.xsd
                     url: '/orders/create-order'
+                    externalURL: 'http://173.229.191.93:8083/tos/getUSMFeatureDetails'
                     connection_timeout : 10
                     read_timeout : 5
 
@@ -29,9 +32,9 @@ Environments:
                     maxTotal : 20
                     maxIdle : 5
                     minIdle : 5
-                    maxWaitTime : 2000 
+                    maxWaitTime : 2000
                     defaultQueryTimeout : 2000
- 
+
         DaoConfigurations :
             OrdersDaoConfiguration :
                 datasource : "OrdersDataSource"
@@ -49,14 +52,14 @@ Environments:
             url : "jdbc:oracle:thin@dev123"
             userName : dev
             password : dev
-    
+
     Test:
         DataSourceConfiguration :
             id : "OrdersDataSource"
             url : "jdbc:oracle:thin@test123"
             userName : test
             password : test
-    
+
     Production:
         DataSourceConfiguration :
             id : "OrdersDataSource"

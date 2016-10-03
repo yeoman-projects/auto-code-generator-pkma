@@ -1,5 +1,5 @@
 {
-  "name": "generator-jhipster-codeathon",
+  "name": "generator-jhipster-server",
   "version": "0.0.0",
   "description": "Generator to create a rest end or database connections.",
   "keywords": [
@@ -11,7 +11,7 @@
     "url": ""
   },
   "author": {
-    "name": "Shashikant Mokkarala",
+    "name": "Vinay Yennampally & Shashikant Mokkarala",
     "email": "mokkarala.shashi@gmail.com",
     "url": "test"
   },

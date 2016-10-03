@@ -20,15 +20,29 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 class BaseController {
 
+	public HttpPost getPostRequest(String apiBaseURI, Object requestObject)
+			throws URISyntaxException, JsonProcessingException, UnsupportedEncodingException {
+		URIBuilder builder = new URIBuilder(apiBaseURI);
+		builder.addParameter("tla", "<%= tla %>");
+
+		String listStubsUri = builder.build().toString();
+		HttpPost postRequest = new HttpPost(listStubsUri);
+
+		ObjectMapper entityMapper = new ObjectMapper();
+		String writeValueAsString = entityMapper.writeValueAsString(requestObject);
+
+		StringEntity entity = new StringEntity(writeValueAsString);
+		entity.setContentType(MediaType.APPLICATION_JSON_VALUE);
+		postRequest.setEntity(entity);
+
+		return postRequest;
+	}
+
 	public ResponseEntity<String> getResponseAsString(HttpResponse response) throws ParseException, IOException {
-		
 		HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("Access-Control-Allow-Origin", "*");
-        if(response!=null){
+
         return new ResponseEntity<String>(EntityUtils.toString(response.getEntity()), responseHeaders,
-                HttpStatus.OK);
-        }
-        return new ResponseEntity<String>("Rest Call Success", responseHeaders,
                 HttpStatus.OK);
 	}
 
