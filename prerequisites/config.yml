@@ -9,7 +9,7 @@ Environments:
                      id 	: "FindOrderByIdTarget"
                      http_method : GET
                      reply_schema_uri: sample.xsd
-                     url: 'orders/find-order-by-id'
+                     url: '/orders/find-order-by-id'
                      connection_timeout : 10
                      read_timeout : 5
 
@@ -18,7 +18,7 @@ Environments:
                     http_method : POST
                     request_schema_uri : sample-request.xsd
                     reply_schema_uri: sample-response.xsd
-                    url: '/orders/create-order'
+                    url: '/getFeatures'
                     externalURL: 'http://173.229.191.93:8083/tos/getUSMFeatureDetails'
                     connection_timeout : 10
                     read_timeout : 5

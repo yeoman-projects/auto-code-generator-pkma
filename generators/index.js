@@ -6,11 +6,14 @@ var fs = require('fs');
 var chalk = require('chalk');
 var Jsonix = require('jsonix').Jsonix;
 var xmls2js = require('xml2js');
+var shelljs = require('shelljs');
 
 module.exports = yeoman.Base
 		.extend({
 
 			initializing : function() {
+
+				shelljs.exec('java -jar jsonix-schema-compiler-full.jar -p PO *.xsd');
 
 				try {
 					fs.lstatSync('config.yml');

@@ -62,19 +62,19 @@
 						</systemProperty>
 					</systemProperties>
 					<webAppConfig>
-						<contextPath>/</contextPath>
+						<contextPath>/<%= tla %></contextPath>
 						<!-- <extraClasspath>target/test-classes/;target/classes/;</extraClasspath> -->
 						<extraClasspath>${project.basedir}/target/classes/;${project.basedir}/etc/jetty/classes/</extraClasspath>
 					</webAppConfig>
-					<!-- SK: 11/22/13 removed because inconsistant with web app <scanTargets> 
+					<!-- SK: 11/22/13 removed because inconsistant with web app <scanTargets>
 						<scanTarget>../target/classes</scanTarget> </scanTargets> -->
 				</configuration>
-				<!-- Here is why we need to add this explicitly: - The plugin classpath 
-					is constructed first, so before the war classpath is sorted out we need to 
-					add this as a dependency first. WARNING: - We cannot really exclude SLF4J 
-					dependency as this would *not* load the logback.xml nor the jetty plugin 
-					will instantiate the Slf4JLog implementation as jetty sigh uses its own logging 
-					facade. - Add this dependency, will cause this warning to show up and *its* 
+				<!-- Here is why we need to add this explicitly: - The plugin classpath
+					is constructed first, so before the war classpath is sorted out we need to
+					add this as a dependency first. WARNING: - We cannot really exclude SLF4J
+					dependency as this would *not* load the logback.xml nor the jetty plugin
+					will instantiate the Slf4JLog implementation as jetty sigh uses its own logging
+					facade. - Add this dependency, will cause this warning to show up and *its*
 					ok (ONLY for jetty runs) SLF4J: Class path contains multiple SLF4J bindings. -->
 				<dependencies>
 					<dependency>
@@ -234,9 +234,9 @@
 		</dependency>
 
 		<!-- Hibernate -->
-		<!-- dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-core</artifactId> 
-			<version>${hibernate.version}</version> </dependency> <dependency> <groupId>com.fasterxml.jackson.datatype</groupId> 
-			<artifactId>jackson-datatype-hibernate4</artifactId> <version>2.2.3</version> 
+		<!-- dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version> </dependency> <dependency> <groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-hibernate4</artifactId> <version>2.2.3</version>
 			</dependency -->
 
 		<!-- Test Artifacts -->
@@ -254,7 +254,7 @@
 		</dependency>
 
 		<!-- Exec cmd -->
-		<!-- dependency> <groupId>org.apache.commons</groupId> <artifactId>commons-exec</artifactId> 
+		<!-- dependency> <groupId>org.apache.commons</groupId> <artifactId>commons-exec</artifactId>
 			<version>1.2</version> </dependency -->
 
 		<!-- Google GSON -->
@@ -265,8 +265,8 @@
 		</dependency>
 
 		<!-- MySQL -->
-		<!-- dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> 
-			<version>5.1.29</version> </dependency> <dependency> <groupId>commons-dbcp</groupId> 
+		<!-- dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId>
+			<version>5.1.29</version> </dependency> <dependency> <groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId> <version>1.4</version> </dependency -->
 
 		<dependency>
@@ -276,7 +276,7 @@
 		</dependency>
 
 		<!-- Templating -->
-		<!-- dependency> <groupId>org.freemarker</groupId> <artifactId>freemarker</artifactId> 
+		<!-- dependency> <groupId>org.freemarker</groupId> <artifactId>freemarker</artifactId>
 			<version>2.3.21</version> </dependency -->
 
 		<dependency>
@@ -340,7 +340,7 @@
 		</dependency>
 
 		<!-- SFTP Connection via JSch -->
-		<!-- dependency> <groupId>com.jcraft</groupId> <artifactId>jsch</artifactId> 
+		<!-- dependency> <groupId>com.jcraft</groupId> <artifactId>jsch</artifactId>
 			<version>0.1.51</version> </dependency -->
 
 	</dependencies>
